@@ -11,8 +11,6 @@ This name will be used for the folder inside your *Program Files*
 [![Download link](download-latest-brightgreen.svg)](https://github.com/xPucTu4/ChromiumUpdathe/releases/latest)
 
 # License
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)  
 I refuse to add any legal-looking license here,  
 so if you have found this code, do whatever you want with it!
-
-http://github.com - automatic!  
-[GitHub](http://github.com)
