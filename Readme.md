@@ -8,3 +8,7 @@ This name will be used for the folder inside your *Program Files*
 
 # Download
 [![Build status](https://ci.appveyor.com/api/projects/status/0hgmi1g80h44250w?svg=true)](https://github.com/xPucTu4/ChromiumUpdathe/releases/latest)
+
+# License
+I refuse to add any legal-looking license here,  
+so if you have found this code, do whatever you want with it!
