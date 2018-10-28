@@ -12,7 +12,7 @@ namespace ChromiumUpdathe
     {
         public static string ChromiumUrl = "https://download-chromium.appspot.com/rev/Win_x64?type=snapshots";
         public static string ArchiveUrl = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/Win_x64/__PENIS_LAST_COMMIT__/chrome-win.zip";
-        public static string InstallDirectory = "C:\\Program Files\\";
+        public static string InstallDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         static void Main(string[] args)
         {
             Console.WriteLine("Updating chromium!");
