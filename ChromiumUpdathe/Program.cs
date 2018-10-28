@@ -12,6 +12,7 @@ namespace ChromiumUpdathe
     {
         public static string ChromiumUrl = "https://download-chromium.appspot.com/rev/Win_x64?type=snapshots";
         public static string ArchiveUrl = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/Win_x64/__PENIS_LAST_COMMIT__/chrome-win.zip";
+        public static string InstallDirectory = "C:\\Program Files\\";
         static void Main(string[] args)
         {
             Console.WriteLine("Updating chromium!");
@@ -20,7 +21,6 @@ namespace ChromiumUpdathe
             client.DefaultRequestHeaders.AcceptLanguage.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("en-US", 0.8f));
             client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("DickHTTPLib", "0.2.5"));
             Task<string> jsonText = client.GetStringAsync(ChromiumUrl);
-            //Task<string> html = File.ReadAllTextAsync("cache1.txt");
             jsonText.Wait();
             var result = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(jsonText.Result, new { content = "" });
             Console.WriteLine("The last version commit is {0}.", result.content);
@@ -36,7 +36,7 @@ namespace ChromiumUpdathe
                 fs.Close();
                 try
                 {
-                    DeleteRecursive(@"C:\Program Files\chrome-win");
+                    DeleteRecursive(Path.Combine(InstallDirectory, "chrome-win"));
                     Console.WriteLine("The old directory is deleted");
                 }
                 catch (Exception any)
@@ -46,7 +46,7 @@ namespace ChromiumUpdathe
                 Console.WriteLine("Extracting archive");
                 try
                 {
-                    System.IO.Compression.ZipFile.ExtractToDirectory(tempName, @"c:\program files\");
+                    System.IO.Compression.ZipFile.ExtractToDirectory(tempName, InstallDirectory);
                     Console.WriteLine("The new version is extracted");
                 }
                 catch (Exception any)
@@ -66,7 +66,7 @@ namespace ChromiumUpdathe
 
         private static string GetMyVersion()
         {
-            DirectoryInfo di = new DirectoryInfo("c:\\program files\\chrome-win\\");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(InstallDirectory,"chrome-win"));
             var a = di.GetFiles("*.manifest");
             return a[0].Name.Replace(".manifest", "");
         }
