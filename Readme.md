@@ -1,4 +1,4 @@
-﻿# ChromiumUpdathe
+# ChromiumUpdathe
 Updater for chromium browser (official builds)
 
 This will download and extract the latest build of chromium into your *Program Files* folder.  
