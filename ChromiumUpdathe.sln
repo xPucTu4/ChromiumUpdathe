@@ -7,7 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromiumUpdathe", "Chromium
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6B62E83-F9E6-4D66-A2D3-C55F962406FC}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Pictures\download-latest-brightgreen.svg = ..\..\..\Pictures\download-latest-brightgreen.svg
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
