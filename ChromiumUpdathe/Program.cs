@@ -54,6 +54,10 @@ namespace ChromiumUpdathe
                     Console.WriteLine("Error: ", any.Message);
                 }
                 File.Delete(tempName);
+
+                // Set my version
+                File.WriteAllText(Path.Combine(InstallDirectory, "dick.ver"), result.content);
+
                 Console.WriteLine("Update completed");
             }
             else
@@ -66,6 +70,12 @@ namespace ChromiumUpdathe
 
         private static string GetMyVersion()
         {
+            try
+            {
+                return File.ReadAllText(Path.Combine(InstallDirectory, "dick.ver"));
+            }
+            catch { }
+
             DirectoryInfo di = new DirectoryInfo(Path.Combine(InstallDirectory,"chrome-win"));
             var a = di.GetFiles("*.manifest");
             return a[0].Name.Replace(".manifest", "");
