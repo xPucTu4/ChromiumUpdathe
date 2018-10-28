@@ -6,7 +6,8 @@ If the folder exists, its content will be **deleted** and the downloaded version
 Chromium uses folder named **chrome-win** in their archive.  
 This name will be used for the folder inside your *Program Files*
 
-# Download
+# Builds and Downloads
+[![Build status](https://ci.appveyor.com/api/projects/status/0hgmi1g80h44250w?svg=true)](https://ci.appveyor.com/project/xPucTu4/chromiumupdathe)
 [![Build status](https://ci.appveyor.com/api/projects/status/0hgmi1g80h44250w?svg=true)](https://github.com/xPucTu4/ChromiumUpdathe/releases/latest)
 
 # License
