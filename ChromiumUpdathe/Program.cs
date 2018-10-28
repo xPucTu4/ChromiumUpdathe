@@ -31,7 +31,8 @@ namespace ChromiumUpdathe
                 Console.WriteLine("Writing to disk");
                 string tempName = Path.GetTempFileName();
                 FileStream fs = File.OpenWrite(tempName);
-                zipAsync.Result.CopyToAsync(fs).Wait();
+                CopyWithProgress(zipAsync.Result, fs);
+                
                 fs.FlushAsync().Wait();
                 fs.Close();
                 try
@@ -68,6 +69,29 @@ namespace ChromiumUpdathe
             Console.ReadKey(true);
         }
 
+        private static void CopyWithProgress(Stream src, Stream dst)
+        {
+            Console.WriteLine();
+            byte[] buffer = new byte[1024];
+            int totalReaded = 0;
+            int readCount = 0;
+            do
+            {
+                readCount = src.Read(buffer, 0, buffer.Length);
+                dst.Write(buffer, 0, readCount);
+                totalReaded++;
+                
+                // Report progress
+                if (totalReaded % 1024 == 0)
+                {
+                    Console.Write(String.Concat(Enumerable.Repeat("\b \b", 64)));
+                    Console.Write("Downloaded: {0} MB.".PadRight(32, ' '), totalReaded);
+                }
+            }
+            while (readCount > 0);
+            Console.WriteLine();
+        }
+
         private static string GetMyVersion()
         {
             try
@@ -75,10 +99,16 @@ namespace ChromiumUpdathe
                 return File.ReadAllText(Path.Combine(InstallDirectory, "chrome-win", "dick.ver"));
             }
             catch { }
-
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(InstallDirectory,"chrome-win"));
-            var a = di.GetFiles("*.manifest");
-            return a[0].Name.Replace(".manifest", "");
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(Path.Combine(InstallDirectory, "chrome-win"));
+                var a = di.GetFiles("*.manifest");
+                return a[0].Name.Replace(".manifest", "");
+            }
+            catch
+            {
+                return "0";
+            }
         }
 
         private static void DeleteRecursive(string v)
