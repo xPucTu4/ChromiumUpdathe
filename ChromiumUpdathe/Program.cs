@@ -56,7 +56,7 @@ namespace ChromiumUpdathe
                 File.Delete(tempName);
 
                 // Set my version
-                File.WriteAllText(Path.Combine(InstallDirectory, "dick.ver"), result.content);
+                File.WriteAllText(Path.Combine(InstallDirectory, "chrome-win", "dick.ver"), result.content);
 
                 Console.WriteLine("Update completed");
             }
@@ -72,7 +72,7 @@ namespace ChromiumUpdathe
         {
             try
             {
-                return File.ReadAllText(Path.Combine(InstallDirectory, "dick.ver"));
+                return File.ReadAllText(Path.Combine(InstallDirectory, "chrome-win", "dick.ver"));
             }
             catch { }
 
