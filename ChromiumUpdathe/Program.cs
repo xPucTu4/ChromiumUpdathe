@@ -23,7 +23,16 @@ namespace ChromiumUpdathe
             Task<string> jsonText = client.GetStringAsync(ChromiumUrl);
             jsonText.Wait();
             var result = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(jsonText.Result, new { content = "" });
-            Console.WriteLine("The last version commit is {0}.", result.content);
+
+            int versionDiff = 0;
+            try
+            {
+                versionDiff = Int32.Parse(result.content) - Int32.Parse(GetMyVersion());
+
+            }
+            catch { }
+
+            Console.WriteLine("The last version commit is {0}, and your is {1}, {2} versions behind.", result.content, GetMyVersion(), versionDiff);
             if (result.content != GetMyVersion())
             {
                 var zipAsync = client.GetStreamAsync(ArchiveUrl.Replace("__PENIS_LAST_COMMIT__", result.content));
