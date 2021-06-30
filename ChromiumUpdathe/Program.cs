@@ -22,6 +22,7 @@ namespace ChromiumUpdathe
             client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("DickHTTPLib", "0.2.5"));
             Task<string> jsonText = client.GetStringAsync(ChromiumUrl);
             jsonText.Wait();
+            
             var result = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(jsonText.Result, new { content = "" });
 
             int versionDiff = 0;
@@ -94,7 +95,7 @@ namespace ChromiumUpdathe
                 if (totalReaded % 1024 == 0)
                 {
                     Console.Write(String.Concat(Enumerable.Repeat("\b \b", 64)));
-                    Console.Write("Downloaded: {0} MB.".PadRight(32, ' '), totalReaded);
+                    Console.Write("Downloaded: {0} KB.".PadRight(32, ' '), totalReaded);
                 }
             }
             while (readCount > 0);
